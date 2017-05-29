@@ -25,16 +25,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
         dialog.setTitle("첫 번째, 다이얼로그");
         dialog.setIcon(R.drawable.images);
-        dialog.setMessage("여기는 메시지를 쓰는 곳입니다.");
-        dialog.setItems(itemArr, new DialogInterface.OnClickListener() {
+        // 원래 Message와 Items는 한 창에서 동시 구현이 불가능!
+        //dialog.setMessage("여기는 메시지를 쓰는 곳입니다.");
+        //단순목록
+        /*dialog.setItems(itemArr, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // 클릭된 항목의 번호를 which가 갖고있음. (0~)
                 butDialog.setText(itemArr[which]);
+            }
+        });*/ //ctrl + shift + / : 주석처리
 
+ //     라디오 버튼 목록
+
+        dialog.setSingleChoiceItems(itemArr, 0, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // 클릭된 항목의 번호를 which가 갖고있음. (0~)
+                butDialog.setText(itemArr[which]);
             }
         });
-        dialog.setPositiveButton("Ok", null);
+
+
+
+        dialog.setPositiveButton("OK", null);
         dialog.show();
     }
 }
